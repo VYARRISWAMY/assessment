@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #d3d3d3;
+            font-family: Arial, sans-serif;
+        }
+        .calculator {
+            display: grid;
+            grid-template-areas: "display ac" "numbers operations";
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .display {
+            grid-area: display;
+            width: 90%;
+            height: 60px;
+            font-size: 2em;
+            text-align: left;
+            padding: 10px;
+            background: #f7f7f7;
+            border: none;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .buttons {
+            display: grid;
+            grid-area: numbers;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            background: #1e1e1e;
+            padding: 10px;
+        }
+        .operations {
+            display: grid;
+            grid-area: operations;
+            grid-template-columns: 1fr;
+            gap: 5px;
+            background: #3b3b3b;
+            padding: 10px;
+        }
+        button {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttons button {
+            background: #2c2c2c;
+            color: white;
+        }
+        .operations button {
+            background: #555;
+            color: white;
+        }
+        .clear {
+            background: #0097a7;
+            color: white;
+            grid-area: ac;
+            width: 800px;
+          
+        }
+
+#cl{
+    background: #0097a7;
+            color: white;
+            grid-area: ac;
+            width: 120px;
+            height: 80px;
+}
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="display" id="display" disabled>
+        <button id="cl" onclick="clearDisplay()">AC</button>
+        <div class="buttons">
+            <button onclick="appendValue('9')">9</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button onclick="appendValue('.')">.</button>
+            <button onclick="appendValue('0')">0</button>
+            <button onclick="calculateResult()">=</button>
+        </div>
+        <div class="operations">
+            <button onclick="appendValue('+')">+</button>
+            <button onclick="appendValue('-')">-</button>
+            <button onclick="appendValue('*')">×</button>
+            <button onclick="appendValue('/')">÷</button>
+        </div>
+    </div>
+    <script>
+        function appendValue(value) {
+            document.getElementById('display').value += value;
+        }
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+        function calculateResult() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
